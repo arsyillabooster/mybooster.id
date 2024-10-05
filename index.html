@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMO BOOSTER</title>
+    <style>
+        body {
+            /* Menentukan gambar sebagai latar belakang */
+            background-image: url('maxx.gif'); /* Ganti dengan path gambar Anda */
+            
+            /* Mengatur ukuran gambar agar menyesuaikan dengan layar */
+            background-size: cover;
+            
+            /* Agar gambar tetap di posisi saat di-scroll */
+            background-attachment: fixed;
+            
+            /* Menempatkan gambar di tengah */
+            background-position: center;
+            
+            /* Jika gambar tidak memuat, warna latar belakang akan muncul */
+            background-color: #f0f0f0;
+        }
+/* CSS untuk styling notifikasi */
+        .notification {
+            background-color: #FF4900;
+            color: white;
+            padding: 16px;
+            position: fixed;
+            top: 20px;
+            right: -300px; /* Mulai di luar layar */
+            z-index: 1;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            width: 250px;
+            transition: right 0.5s ease-in-out;
+        }
+
+        .notification.show {
+            right: 20px; /* Geser ke dalam layar */
+        }
+
+        .notification.hide {
+            right: -300px; /* Geser keluar layar */
+        }
+        
+    </style>
+</head>
+<body>
+  <div id="salesNotification" class="notification">
+        <!-- Pesan notifikasi akan dimasukkan di sini -->
+    </div>
+    <img src="dibatasi.gif" width="350" height="200">
+    <br>
+    <br>
+    <div>
+      <a href="https://wa.me/message/QW4PRW3QY7QWI1">
+    <img src="kontak.gif" width="350" height="120"></a>
+    </div>
+<script>
+        // Array berisi berbagai pesan notifikasi
+        var notifications = [
+            "MEMBER BARU :Rendxxxx Menggunakan ultimate maxx booster",
+            "MEMBER BARU :Widiaxxxx telah menggunakan ultimate maxx booster",
+            "MEMBER BARU :Efendixxxx telah menggunakan ultimate maxx booster",
+            "MEMBER BARU: Hijabxxx telah menggunakan ultimate maxx booster"
+        ];
+
+        var notificationIndex = 0;
+
+        function showNotification() {
+            var notification = document.getElementById("salesNotification");
+            notification.innerHTML = notifications[notificationIndex];  // Set pesan notifikasi
+            notification.classList.add("show");  // Tampilkan notifikasi dengan efek slide-in
+
+            // Setelah 5 detik, sembunyikan notifikasi dengan efek slide-out
+            setTimeout(function() {
+                notification.classList.remove("show");
+                notification.classList.add("hide");
+            }, 5000);
+
+            // Setelah 7 detik (2 detik setelah sembunyi), tampilkan notifikasi berikutnya
+            setTimeout(function() {
+                notification.classList.remove("hide");
+                notificationIndex = (notificationIndex + 1) % notifications.length; // Perbarui indeks
+                showNotification(); // Tampilkan notifikasi berikutnya
+            }, 7000);
+        }
+
+        // Mulai notifikasi setelah halaman dimuat
+        window.onload = function() {
+            showNotification();
+        };
+    </script>
+</body>
+</html>
